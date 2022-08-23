@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="column is-4 is-offset-4">
+    <h2 class="title">New password Generated</h2>
+    <div class="box">
+        <form action="/generation" method="POST">
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="password"  autofocus="">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button style="width: 100%;"  class="btn btn-primary">Validate</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
