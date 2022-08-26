@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, request, flash,session
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
 from .models import User
 from . import db
-
+import pyperclip
+from password_generator import generator
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
@@ -61,4 +62,67 @@ def signup_post():
 @login_required
 def logout():
     logout_user()
+    return redirect(url_for('main.index'))
+
+
+
+
+@auth.route("/profile")
+def home():
+    if "chars" not in session:
+        session["chars"] = ["uppercase", "lowercase", "digits", "symbols"]
+    if "len_range_value" not in session:
+        session["len_range_value"] = 14
+    if "secure_password" not in session:
+        chars = session["chars"]
+        len_range_value = session["len_range_value"]
+
+        session["secure_password"] = generator(
+            length=int(len_range_value),
+            uppercase="uppercase" in chars,
+            lowercase="lowercase" in chars,
+            digits="digits" in chars,
+            symbols="symbols" in chars,
+        )
+
+    chars = session["chars"]
+    len_range_value = session["len_range_value"]
+    secure_password = session["secure_password"]
+
+    return render_template(
+        "profile.html",
+        chars=chars,
+        len_range_value=len_range_value,
+        secure_password=secure_password,
+    )
+
+
+@auth.route("/generation", methods=["GET", "POST"])
+def generate():
+    if request.method == "POST":
+        chars = request.form.getlist("char_box")
+        len_range_value = request.form.get("len_range")
+        secure_password = generator(
+            length=int(len_range_value),
+            uppercase="uppercase" in chars,
+            lowercase="lowercase" in chars,
+            digits="digits" in chars,
+            punctuation="punctuation" in chars,
+        )
+
+        if len(chars) != 0:
+            session["chars"] = chars
+            session["len_range_value"] = len_range_value
+            session["secure_password"] = secure_password
+            return redirect(url_for('main.index'))
+        else:
+            return redirect(url_for('main.index'))
+    else:
+        return redirect(url_for('main.index'))
+
+
+@auth.route("/generation")
+def copy():
+    secure_password = session["secure_password"]
+    pyperclip.copy(secure_password)
     return redirect(url_for('main.index'))

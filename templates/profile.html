@@ -32,6 +32,34 @@
                     <input class="input is-large" type="password" name="password" placeholder="Password for login">
                 </div>
             </div>
+            {% if "uppercase" in chars %}
+                <input type="checkbox" name="char_box" value="uppercase" checked>
+                <label>Uppercase Alphabets</label><br>
+            {% else %}
+                <input type="checkbox" name="char_box" value="uppercase">
+                <label>Uppercase Alphabets</label><br>
+            {% endif %}
+            {% if "lowercase" in chars %}
+                <input type="checkbox" name="char_box" value="lowercase" checked>
+                <label>Lowercase Alphabets</label><br>
+            {% else %}
+                <input type="checkbox" name="char_box" value="lowercase">
+                <label>Lowercase Alphabets</label><br>
+            {% endif %}
+            {% if "digits" in chars %}
+                <input type="checkbox" name="char_box" value="digits" checked>
+                <label>Digits</label><br>
+            {% else %}
+                <input type="checkbox" name="char_box" value="digits">
+                <label>Digits</label><br>
+            {% endif %}
+            {% if "symbols" in chars %}
+                <input type="checkbox" name="char_box" value="symbols" checked>
+                <label>Symbols</label><br>
+            {% else %}
+                <input type="checkbox" name="char_box" value="symbols">
+                <label>Symbols</label><br>
+            {% endif %}
 
             <div class="field">
               <div class="control">
