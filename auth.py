@@ -4,7 +4,9 @@ from flask_login import login_user, logout_user, login_required
 from .models import User
 from . import db
 import pyperclip
-from password_generator import generator
+
+import  password_generator as pg
+
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
@@ -18,6 +20,7 @@ def login_post():
     remember = True if request.form.get('remember') else False
 
     user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(password=password).first()
 
     if not user and not check_password_hash(user.password, password):
         flash('Please check your login details and try again.')
@@ -33,6 +36,13 @@ def generatee():
 
 @auth.route('/profile',methods=['POST'])
 def generate():
+    name = request.form.get('name')
+    gateway = request.form.get('name')
+    password = request.form.get('password')
+    user = User.query.filter_by(gateway=gateway).first()
+    user = User.query.filter_by(name=name).first()
+    user = User.query.filter_by(password=password).first()
+    login_user(user)
     return redirect(url_for('main.generation'))
 
 @auth.route('/signup')
@@ -44,7 +54,6 @@ def signup_post():
     email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
-
     user = User.query.filter_by(email=email).first()
 
     if user:
@@ -77,7 +86,7 @@ def home():
         chars = session["chars"]
         len_range_value = session["len_range_value"]
 
-        session["secure_password"] = generator(
+        session["secure_password"] = pg.generator(
             length=int(len_range_value),
             uppercase="uppercase" in chars,
             lowercase="lowercase" in chars,
@@ -102,7 +111,7 @@ def generate():
     if request.method == "POST":
         chars = request.form.getlist("char_box")
         len_range_value = request.form.get("len_range")
-        secure_password = generator(
+        secure_password = pg.generator(
             length=int(len_range_value),
             uppercase="uppercase" in chars,
             lowercase="lowercase" in chars,

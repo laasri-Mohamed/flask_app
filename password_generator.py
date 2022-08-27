@@ -17,7 +17,7 @@ def generator(**kwargs):
             password += "-"
         else:
             password += random.choice(characters)
-
+            
     return password
 def get_characters(**kwargs):
     uppercase = kwargs.get("uppercase")
@@ -39,4 +39,3 @@ def get_characters(**kwargs):
         return UPPERCASE + LOWERCASE + DIGITS + SYMBOLS
 
     return characters
-

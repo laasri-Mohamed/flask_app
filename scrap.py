@@ -12,7 +12,7 @@ from selenium.webdriver.chrome.options import Options
 options = Options()
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 #os.environ['PATH'] += r"C:\Users\LAASRI MOHAMED\OneDrive\Bureau\SelniumDrivers"
-driver = webdriver.Chrome(executable_path=r"C:\Users\LAASRI MOHAMED\OneDrive\Bureau\chromedriver.exe",chrome_options=options)
+driver = webdriver.Firefox(executable_path=r"/home/ubunto/Bureau/geckodriver.exe",firefox_options=options)
 #driver = webdriver.Chrome()
 driver.maximize_window()
 driver.implicitly_wait(20)
@@ -43,7 +43,7 @@ button6 = driver.find_element(by=By.XPATH,value='//*[@id="Btn_apply_WLANSSIDConf
 button6.click()
 time.sleep(2)
 
-
+"""
 button5 = driver.find_element(by=By.XPATH,value='//*[@id="instName_WLANSSIDConf:4"]')
 button5.click()
 #For 4G
@@ -51,7 +51,7 @@ NewPassword2 = driver.find_element(by=By.XPATH,value='//*[@id="KeyPassphrase:4"]
 NewPassword2.clear()
 NewPassword2.send_keys("")
 button6 = driver.find_element(by=By.XPATH,value='//*[@id="Btn_apply_WLANSSIDConf:4"]')
-button6.click()
+button6.click()"""
 #logout
 time.sleep(2)
 button6 = driver.find_element(by=By.XPATH,value='//*[@id="LogOffLnk"]')
