@@ -23,7 +23,7 @@ username = driver.find_element(by=By.ID,value='Frm_Username')
 username.send_keys()
     
 LastPassword = driver.find_element(by=By.ID,value='Frm_Password')
-LastPassword.send_keys(Pas)
+LastPassword.send_keys("")
     
 time.sleep(2)
 button1 = driver.find_element(by=By.XPATH,value='//*[@id="LoginId"]')
@@ -38,11 +38,13 @@ button4.click()
 #For 5G
 NewPassword1 = driver.find_element(by=By.XPATH,value='//*[@id="KeyPassphrase:0"]')
 NewPassword1.clear()
-NewPassword1.send_keys(last())
+NewPassword1.send_keys("")
 button6 = driver.find_element(by=By.XPATH,value='//*[@id="Btn_apply_WLANSSIDConf:0"]')
 button6.click()
 time.sleep(2)
-"""button5 = driver.find_element(by=By.XPATH,value='//*[@id="instName_WLANSSIDConf:4"]')
+
+"""
+button5 = driver.find_element(by=By.XPATH,value='//*[@id="instName_WLANSSIDConf:4"]')
 button5.click()
 #For 4G
 NewPassword2 = driver.find_element(by=By.XPATH,value='//*[@id="KeyPassphrase:4"]')
@@ -54,5 +56,4 @@ button6.click()"""
 time.sleep(2)
 button6 = driver.find_element(by=By.XPATH,value='//*[@id="LogOffLnk"]')
 button6.click()
-    
 time.sleep(10)
