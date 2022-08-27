@@ -43,15 +43,15 @@ button6 = driver.find_element(by=By.XPATH,value='//*[@id="Btn_apply_WLANSSIDConf
 button6.click()
 time.sleep(2)
 
-"""
+
 button5 = driver.find_element(by=By.XPATH,value='//*[@id="instName_WLANSSIDConf:4"]')
 button5.click()
 #For 4G
 NewPassword2 = driver.find_element(by=By.XPATH,value='//*[@id="KeyPassphrase:4"]')
 NewPassword2.clear()
-NewPassword2.send_keys(NEW())
+NewPassword2.send_keys("")
 button6 = driver.find_element(by=By.XPATH,value='//*[@id="Btn_apply_WLANSSIDConf:4"]')
-button6.click()"""
+button6.click()
 #logout
 time.sleep(2)
 button6 = driver.find_element(by=By.XPATH,value='//*[@id="LogOffLnk"]')
